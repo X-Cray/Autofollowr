@@ -1,0 +1,4 @@
+cron:
+- description: Check all users who requested following
+  url: /tryfollow
+  schedule: every 1 minutes

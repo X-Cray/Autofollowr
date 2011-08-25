@@ -1,0 +1,26 @@
+body
+{
+	background-color: #fff;
+	font-size: 11pt;
+	font-family: sans-serif;
+	padding: 10px;
+	background-color: #000;
+	color: #aaa;
+}
+
+#avatar
+{
+	float: left;
+}
+
+#greeting
+{
+	float: left;
+	padding: 10px;
+}
+
+#actions
+{
+	clear: both;
+	padding-top: 15px;
+}
