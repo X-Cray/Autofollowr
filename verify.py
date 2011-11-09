@@ -1,3 +1,4 @@
+import logging
 from google.appengine.ext import webapp
 from appengine_utilities.sessions import Session
 from common import *
@@ -6,6 +7,9 @@ class VerifyPage(webapp.RequestHandler):
 	def get(self):
 		auth_token = self.request.get("oauth_token")
 		auth_verifier = self.request.get("oauth_verifier")
+		
+		logging.debug("Called with oauth_token = %s, oauth_verifier = %s" % (auth_token, auth_verifier))
+
 		user_info = client.get_user_info(auth_token, auth_verifier=auth_verifier)
 
 		self.session = Session(writer="cookie")
@@ -16,6 +20,8 @@ class VerifyPage(webapp.RequestHandler):
 		user.picture = user_info["picture"]
 		user.token = user_info["token"]
 		user.secret = user_info["secret"]
+
+		logging.debug("Got Twitter user info: name = %s, picture = %s, token = %s, secret = %s" % (user.name, user.picture, user.token, user.secret))
 
 		if not user.follow_account:
 			user.follow_account = ""
